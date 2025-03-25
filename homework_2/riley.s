@@ -24,6 +24,7 @@ end:
     ldr r0, =done   @ put the address of the "done" string into r0
     bl printf       @ print it
 
+    mov r0, #0      @ exit code of 0 for success
     mov r7, #0x01   @ value for exit system call
     svc 0           @ make the syscall, exiting gracefully
 

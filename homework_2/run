@@ -11,5 +11,5 @@ fi
 
 arm-linux-gnueabi-as -o "${base}.o" "${base}.s"
 arm-linux-gnueabi-gcc -z noexecstack -static -o "${base}" "${base}.o"
-./$base
+./$base || echo -e "\n[warn] exited with code $?"
 rm "${base}.o" "${base}"
