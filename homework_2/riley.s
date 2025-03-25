@@ -13,12 +13,12 @@ loop:
     bhi end         @ jump to the end if we are
 
     ldr r0, =count  @ put the address of the format string into r0
-    mov r1, r5
+    mov r1, r5      @ copy the counter to r1 for printing
     bl printf       @ call printf. will use r0 as the string and r1 as the data
 
-    add r5, r5, #1
+    add r5, r5, #1  @ increment the counter
 
-    b loop          @ loop
+    b loop          @ jump back to the loop
 
 end:
     ldr r0, =done   @ put the address of the "done" string into r0
@@ -38,5 +38,5 @@ count: .asciz "%d\n"
 .balign 4
 done: .asciz "happily finished\n"
 
-@ declare this so as won't explode (gcc will take care of these during the linking phase)
+@ declare printf function so `as` won't explode (gcc will take care of it during the linking phase)
 .global printf
