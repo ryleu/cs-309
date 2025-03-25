@@ -1,0 +1,15 @@
+#!/bin/env bash
+
+set -e
+
+base=${1%.s}
+
+if [[ ! -f "${base}.s" ]]; then
+    echo "not found $1"
+    exit 1
+fi
+
+arm-linux-gnueabi-as -o "${base}.o" "${base}.s"
+arm-linux-gnueabi-gcc -z noexecstack -static -o "${base}" "${base}.o"
+./$base
+rm "${base}.o" "${base}"
